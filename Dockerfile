@@ -1,0 +1,8 @@
+# Multi-stage Node.js Dockerfile
+FROM node:18-alpine AS base
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+EXPOSE 3000
+CMD ["node","src/index.js"]
